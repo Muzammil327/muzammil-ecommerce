@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.section {
+    @apply my-12;
+}
+*,
+*::after,
+*::before {
+  @apply m-0 p-0 box-border;
+  font-family: sans-serif;
+}
+html,
+body {
+  @apply w-full scroll-smooth overflow-x-hidden;
+}
+input, textarea {
+  @apply outline-none border-none;
+}
+button {
+  @apply outline-none;
+}
+.overlay {
+    @apply transition-all overflow-x-hidden top-0 left-0 z-50 fixed h-full;
+  }
+  .element {
+    animation: myAnim 1s ease 0s 1 normal forwards;
+  }
+  @keyframes myAnim {
+    0% {
+      transform: scaleY(0.4);
+    }
+  
+    100% {
+      transform: scaleY(1);
+    }
+  }
