@@ -1,101 +1,165 @@
 "use client";
 import Container from "../../elements/container/page";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
+import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
 import { useState } from "react";
-import logo from '@/public/blogo.png'
-import { FaTimes, FaBars } from "react-icons/fa";
-export default function Header() {
-  const router = useRouter();
-  const [open, setOpen] = useState(false);
 
+export default function Header() {
+  const [open, setOpen] = useState(false);
   return (
-    <div className="text-black py-6 w-full">
-      <Container>
-        <div className="flex justify-between items-center">
+    <>
+      <div className="subheader bg-blue-500 py-3 text-white px-5 relative">
+        <Container>
+          <div className="flex flex-wrap items-center justify-between">
+            <div className="left">
+              <ul className="flex gap-4 text-base">
+                <li>24/7 Customer Support</li>
+                <li>992 314 7878528</li>
+              </ul>
+            </div>
+            <div className="right ">
+              <ul className="flex gap-4 text-base">
+                <li>Shipping &amp; return</li>
+                <li>Track order</li>
+              </ul>
+            </div>
+          </div>
+        </Container>
+      </div>
+      <div>
+        <div
+          className={
+            open
+              ? "h-full absolute top-0 left-0 bottom-0 right-0 bg-blue-800"
+              : "header bg-blue-200"
+          }
+        >
+          <div className="border-b-2 border-slate-200">
+            <Container>
+              <div
+                className={
+                  open
+                    ? "py-5 flex justify-center"
+                    : "flex items-center justify-between py-4"
+                }
+              >
+                <div className="log order-1">
+                  <img
+                    src="https://websitedemos.net/electronic-store-04/wp-content/uploads/sites/1055/2022/03/electronic-store-logo.svg"
+                    alt=""
+                    title=""
+                  />
+                </div>
+                <div className="md:flex hidden items-center gap-2 order-2">
+                  <input
+                    type="text"
+                    placeholder="Search Products"
+                    className="px-4 h-11 outline-none"
+                  />
+                  <button className="bg-black text-white h-11 px-4">
+                    <FaSearch />
+                  </button>
+                </div>
+              </div>
+            </Container>
+          </div>
+
           <div
-            className="log text-2xl cursor-pointer"
-            onClick={() => {
-              router.push("/");
-              setOpen(false);
-            }}
+            className={
+              open ? "mt-5" : "px-4 order-3 md:block hidden py-3"
+            }
           >
-            <Image
-              src={logo}
-              alt=""
-              className="md:w-40 w-28 h-auto"
-              height={500}
-              width={100}
-            />
+            <Container>
+              <ul
+                className={
+                  open ? "" : "flex gap-8 text-lg font-medium text-white relative"
+                }
+              >
+                {data.map((data: any) => (
+                  <>
+                    <li
+                      className={
+                        open ? "py-2 text-left text-white text-lg" : "menu"
+                      }
+                      key={data.id}
+                    >
+                      <a href="" >{data.name}</a>
+                      {/* <ul className="bg-red-400 submenu z-40 absolute left-0 ">
+                        {data.link.map((data: any) => (
+                          <li key={data.id} className="py-1 px-8">
+                            <a href="" className="py-2 px-5">
+                              {data.name}
+                            </a>
+                          </li>
+                        ))}
+                      </ul> */}
+                    </li>
+                  </>
+                ))}
+              </ul>
+            </Container>
           </div>
           <div
             className={
               open
-                ? "flex-col pt-7 p-4 overlay bg-slate-50 transition-all element md:w-[60%] w-full"
-                : "menu justify-between items-center gap-5 md:flex hidden"
+                ? "absolute top-4 right-4 bg-white text-black h-10 w-10 flex items-center justify-center text-2xl"
+                : "md:hidden text-white order-2 z-20 flex items-center justify-center top-20 right-2 bg-blue-500 h-10 fixed w-10"
             }
-          >
-             <Image
-              src={logo}
-              alt=""
-              className="md:w-40 w-28 h-auto md:hidden flex items-center justify-center py-5 mx-auto"
-              height={500}
-              width={100}
-            />
-            <ul
-              className={
-                open ? "flex-col m-2" : "flex gap-5 items-center text-lg"
-              }
-            >
-              {data.map((datas: any) => (
-                <>
-                  <li
-                    key={datas.id}
-                    className={
-                      open
-                        ? "w-full py-4 border-slate-300 border-b-2 cursor-pointer"
-                        : "cursor-pointer"
-                    }
-                    onClick={() => {
-                      router.push(`${datas.link}`);
-                      setOpen(false);
-                    }}
-                  >
-                    {datas.name}
-                  </li>
-                </>
-              ))}
-            </ul>
-            <a
-              href=""
-              className={
-                open
-                  ? "w-full bg-slate-600 py-3 mt-4 rounded-md text-white text-center font-semibold block"
-                  : "bg-slate-600 rounded-md font-semibold text-white py-3 px-7"
-              }
-            >
-              Contact US
-            </a>
-          </div>
-          <button
-            onClick={() => {
-              setOpen(!open);
-            }}
-            className="md:hidden block bg-slate-600 p-3 rounded-full text-white z-50"
+            onClick={() => setOpen(!open)}
           >
             {open ? <FaTimes /> : <FaBars />}
-          </button>
+          </div>
         </div>
-      </Container>
-    </div>
+      </div>
+    </>
   );
 }
 
 const data = [
-  { id: "1", name: "Home", link: "/" },
-  { id: "2", name: "About", link: "/about" },
-  { id: "3", name: "Conatct", link: "/contact" },
-  { id: "4", name: "Blogs", link: "/blog" },
-  { id: "5", name: "Catgeory", link: "/catgeory" },
+  {
+    id: 1,
+    name: "Home",
+    link: [
+      {
+        id: 1,
+        name: "Link 1",
+      },
+      {
+        id: 2,
+        name: "Link 2",
+      },
+      {
+        id: 3,
+        name: "Link 3",
+      },
+      {
+        id: 4,
+        name: "Link 4",
+      },
+    ],
+  },
+  {
+    id: 2,
+    name: "Home appliances",
+    link: [],
+  },
+  {
+    id: 3,
+    name: "Audio & video",
+    link: [],
+  },
+  {
+    id: 4,
+    name: "Refrigerator",
+    link: [],
+  },
+  {
+    id: 5,
+    name: "About",
+    link: [],
+  },
+  {
+    id: 6,
+    name: "Contact",
+    link: [],
+  },
 ];

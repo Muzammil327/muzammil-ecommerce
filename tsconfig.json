@@ -27,7 +27,7 @@
       "@/types*": ["./src/types*"],
       "@/view*": ["./src/view*"],
       "@/sanity*": ["./sanity*"],
-      "@/public*": ["./public*"],
+      "@/public*": ["./public*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

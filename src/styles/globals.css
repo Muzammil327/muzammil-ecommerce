@@ -2,9 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .section {
     @apply my-12;
 }
+
 *,
 *::after,
 *::before {
@@ -13,7 +15,13 @@
 }
 html,
 body {
-  @apply w-full scroll-smooth overflow-x-hidden;
+  @apply w-full overflow-x-hidden;
+}
+.submenu {
+  display: none;
+}
+.menu:hover .submenu {
+display: block
 }
 input, textarea {
   @apply outline-none border-none;
